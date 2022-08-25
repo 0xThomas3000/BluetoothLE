@@ -144,6 +144,7 @@ class _DeviceListState extends State<_DeviceList> {
                 children: widget.scannerState.discoveredDevices
                     .map(
                       (device) => ListTile(
+                        key: Key(device.rssi.toString()),
                         title: Text(device.name),
                         subtitle: Text("${device.id}\nRSSI: ${device.rssi}"),
                         leading: const BluetoothIcon(),
@@ -157,7 +158,9 @@ class _DeviceListState extends State<_DeviceList> {
                         },
                       ),
                     )
-                    .toList(),
+                    .toList()
+                  ..sort(
+                      ((a, b) => a.key.toString().compareTo(b.key.toString()))),
               ),
             ),
           ],
