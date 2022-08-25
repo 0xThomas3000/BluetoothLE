@@ -16,8 +16,11 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
 
   final _bleLogger = BleLogger();
-  final _ble = FlutterReactiveBle();
-  final _scanner = BleScanner(ble: _ble, logMessage: _bleLogger.addToLog);
+  final _ble = FlutterReactiveBle(); // Create a new instance of BLE obj
+  final _scanner = BleScanner(
+    ble: _ble,
+    logMessage: _bleLogger.addToLog,
+  );
   final _monitor = BleStatusMonitor(_ble);
   final _connector = BleDeviceConnector(
     ble: _ble,
